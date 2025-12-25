@@ -1,0 +1,5 @@
+# tmux downloads (don’t version dependencies)
+.config/tmux/plugins/
+
+# (optional) macOS junk
+.DS_Store
