@@ -17,6 +17,7 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0 -- set to 0 to default to tabstop value
 
+-- 
 
 -- lazyvim block -------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -31,7 +32,7 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-
+---- plugins block ----------
 require("lazy").setup({
     --fzf
         {
@@ -112,6 +113,19 @@ require("lazy").setup({
                     lsp_zero.default_setup,
                 },
             })
+        end,
+    },
+    -- THEMES ---------------------------------------------
+    -- ayu (mirage)
+    {
+        "Shatur/neovim-ayu",
+        lazy = false,    
+        priority = 1000,
+        config = function()
+            require("ayu").setup({
+                mirage = false, 
+            })
+            vim.cmd.colorscheme("ayu")
         end,
     },
 })
