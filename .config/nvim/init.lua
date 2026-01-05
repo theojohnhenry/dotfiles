@@ -19,6 +19,7 @@ vim.opt.shiftwidth = 0 -- set to 0 to default to tabstop value
 
 -- 
 
+
 -- lazyvim block -------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -77,6 +78,8 @@ require("lazy").setup({
         lazy = false,
         build = ':TSUpdate'
     },
+    { 'xiyaowong/transparent.nvim',
+    },
     -- intellisense uzing lsp zerp, mason, lspconfig, cmp.
     -- ctrl-n next suggestion
     -- ctrl-p previous suggestion
@@ -97,9 +100,49 @@ require("lazy").setup({
         config = function()
             local lsp_zero = require('lsp-zero')
 
-            lsp_zero.on_attach(function(client, bufnr)
+                  -- Recommended by nvim-cmp
+                  vim.o.completeopt = "menuone,noselect"
+
+                  -- nvim-cmp setup
+                  local cmp = require('cmp')
+                  local cmp_action = require('lsp-zero').cmp_action()
+                  local luasnip = require('luasnip')
+
+                  cmp.setup({
+                    snippet = {
+                      expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                      end,
+                    },
+                    mapping = cmp.mapping.preset.insert({
+                      ['<Tab>'] = cmp.mapping.select_next_item(),
+                      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+                      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                      ['<Esc>'] = cmp.mapping.abort(),
+
+                      -- Tab to jump in snippets (optional but nice)
+                      ['<S-Tab>'] = cmp_action.luasnip_jump_backward(),
+                    }),
+                    sources = {
+                      { name = 'nvim_lsp' },
+                      { name = 'luasnip' },
+                    },
+                  })
+
+                lsp_zero.on_attach(function(client, bufnr)
                 lsp_zero.default_keymaps({buffer = bufnr})
-            end)
+                  local opts = { buffer = bufnr, noremap = true, silent = true }
+
+              -- Visa fel på aktuell rad
+              vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+
+              -- Hoppa mellan fel
+              vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+              vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+
+              -- Lista fel i quickfix
+              vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, opts)
+                    end)
 
             require("mason").setup()
             require("mason-lspconfig").setup({
