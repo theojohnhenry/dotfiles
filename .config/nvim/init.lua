@@ -1,6 +1,7 @@
 -- numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.scrolloff = 8
 
 -- allows to save undos when exiting a file
 vim.opt.undofile = true
