@@ -19,6 +19,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0 -- set to 0 to default to tabstop value
 
 -- 
+vim.opt.clipboard = "unnamedplus"
 
 
 -- lazyvim block -------------
