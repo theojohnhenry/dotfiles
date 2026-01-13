@@ -19,17 +19,24 @@ set $term ghostty
 # Your preferred application launcher
 set $menu rofi -show run
 
-### Output configuration
+# mod shift s = screenshot to clipboard
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy -t image/png
+
+#dynamic tiling and dope gaps
+exec_always ~/.local/bin/autotiling -d
+gaps inner 8
+gaps outer 8
+
+## Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/pictures/darkcity.jpg fill
 
 font pango:Inter Medium 10
 
-default_border pixel 1
-default_floating_border pixel 1
-
-client.focused #222222 #222222 #ffffff #222222 #222222
+default_border pixel 3
+default_floating_border pixel 3
+client.focused #ffffff50 #ffffff50 #ffffff50 #ffffff50 #ffffff50
 client.unfocused #111111 #111111 #888888 #111111 #111111
 client.focused_inactive #111111 #111111 #888888 #111111 #111111
 
