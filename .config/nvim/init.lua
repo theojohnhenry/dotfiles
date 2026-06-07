@@ -137,6 +137,8 @@ require("lazy").setup({
 
               -- Visa fel på aktuell rad
               vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+              vim.keymap.set("n", "<leader>d", vim.lsp.buf.hover, { desc = "Show hover docs" })
+
 
               -- Hoppa mellan fel
               vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
