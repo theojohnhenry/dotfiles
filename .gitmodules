@@ -1,3 +1,0 @@
-[submodule "themes/flume"]
-	path = themes/flume
-	url = https://github.com/mitander/flume.nvim.git

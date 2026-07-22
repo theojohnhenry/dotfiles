@@ -31,6 +31,7 @@ link_config() {
     printf 'Linked %s -> %s\n' "$target" "$source"
 }
 
+git -C "$DOTFILES_DIR" submodule update --init --recursive
 link_config nvim
 link_config tmux
 

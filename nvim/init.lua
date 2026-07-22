@@ -97,8 +97,6 @@ require("lazy").setup({
         lazy = false,
         build = ':TSUpdate'
     },
-    { 'xiyaowong/transparent.nvim',
-    },
     -- intellisense uzing lsp zerp, mason, lspconfig, cmp.
     -- ctrl-n next suggestion
     -- ctrl-p previous suggestion
@@ -179,9 +177,10 @@ require("lazy").setup({
             })
         end,
     },
-    -- THEMES ---------------------------------------------
+
+    --theme--
     {
-    "mitander/flume.nvim",
+    dir = vim.fn.expand("~/dotfiles/themes/flume"),
     lazy = false,
     priority = 1000,
     opts = {},
@@ -189,7 +188,8 @@ require("lazy").setup({
         require("flume").setup(opts)
         vim.cmd.colorscheme("flume")
     end,
-}
+    }
     
+
 })
 

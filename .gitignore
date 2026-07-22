@@ -3,3 +3,6 @@
 
 # (optional) macOS junk
 .DS_Store
+
+#themes
+themes/flume/
