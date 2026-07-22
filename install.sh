@@ -5,6 +5,13 @@ set -eu
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 
+FLUME_DIR="$DOTFILES_DIR/themes/flume"
+
+if [ ! -d "$FLUME_DIR/.git" ]; then
+    mkdir -p "$DOTFILES_DIR/themes"
+    git clone https://github.com/mitander/flume.nvim.git "$FLUME_DIR"
+fi
+
 link_config() {
     name="$1"
     source="$DOTFILES_DIR/$name"
@@ -31,7 +38,6 @@ link_config() {
     printf 'Linked %s -> %s\n' "$target" "$source"
 }
 
-git -C "$DOTFILES_DIR" submodule update --init --recursive
 link_config nvim
 link_config tmux
 
