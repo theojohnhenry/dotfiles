@@ -1,5 +1,0 @@
-# This file contains fish universal variable definitions.
-# VERSION: 3.0
-SETUVAR --export --path CPATH:/opt/homebrew/include\x1e/opt/homebrew/include\x1e/opt/homebrew/include\x1e/opt/homebrew/include\x1e/opt/homebrew/include\x1e/opt/homebrew/include\x1e/opt/homebrew/include
-SETUVAR --export --path LIBRARY_PATH:/opt/homebrew/lib\x1e/opt/homebrew/lib\x1e/opt/homebrew/lib\x1e/opt/homebrew/lib\x1e/opt/homebrew/lib\x1e/opt/homebrew/lib\x1e/opt/homebrew/lib
-SETUVAR __fish_initialized:4300
