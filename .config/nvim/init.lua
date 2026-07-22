@@ -20,7 +20,7 @@ vim.opt.shiftwidth = 0 -- set to 0 to default to tabstop value
 
 -- 
 vim.opt.clipboard = "unnamedplus"
-
+vim.opt.termguicolors = true
 
 -- lazyvim block -------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -180,27 +180,16 @@ require("lazy").setup({
         end,
     },
     -- THEMES ---------------------------------------------
-    -- ayu (mirage)
     {
-        "Shatur/neovim-ayu",
-        lazy = false,    
-        priority = 1000,
-        config = function()
-            require("ayu").setup({
-                mirage = true, 
-            })
-            vim.cmd.colorscheme("ayu")
-        end,
-    },
-    {
-        "rebelot/kanagawa.nvim", 
-        priority = 1000,
-        config = function()
-            require("kanagawa").setup({
-                theme = "dragon", 
-            })
-            vim.cmd("colorscheme kanagawa-dragon")
-        end,
-    },
+    "mitander/flume.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function(_, opts)
+        require("flume").setup(opts)
+        vim.cmd.colorscheme("flume")
+    end,
+}
+    
 })
 
